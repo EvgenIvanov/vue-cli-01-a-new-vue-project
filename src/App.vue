@@ -2,8 +2,16 @@
   <section>
     <header><h1>My Friends</h1></header>
     <ul>
-      <friend-contact></friend-contact>
-      <friend-contact></friend-contact>
+      <friend-contact
+        name="Manuel Lorenz"
+        phone-number="2222 33333 55"
+        email-address="manuel@localhost.com"
+      ></friend-contact>
+      <friend-contact
+        name="Julie Jons"
+        phone-number="5555 99999 11"
+        email-address="jolie@localhost.com"
+      ></friend-contact>
     </ul>
   </section>
 </template>
@@ -15,13 +23,13 @@ export default {
       friends: [
         {
           id: 'manuel',
-          name: 'Manuel Lorenz',
+          name: 'APP Manuel Lorenz',
           phone: '1379 13971 90',
           email: 'manuel@localhost.com'
         },
         {
           id: 'julie',
-          name: 'Julie Jons',
+          name: 'APP Julie Jons',
           phone: '9093 99391 93',
           email: 'julie@localhost.com'
         }
