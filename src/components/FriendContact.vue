@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite ? '(Favorite)' : '' }}</h2>
+    <h2>{{ name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleDetails">
       {{ detailsAreVisible ? 'Hide' : 'Show' }} Detail
     </button>
@@ -16,6 +16,7 @@
 export default {
   // props: ['name', 'phoneNumber', 'emailAddress', 'isFavorite'],
   props: {
+    id: { type: String, requared: true },
     name: { type: String, requared: true },
     phoneNumber: { type: String, requared: true },
     emailAddress: { type: String, requared: true },
@@ -28,16 +29,20 @@ export default {
       // }
     }
   },
+  // emits: ['toggle-favorite'],
+  emits: {
+    'toggle-favorite': function(id) {
+      if (id) {
+        return true;
+      } else {
+        console.warn('Id is missing!');
+        return false;
+      }
+    }
+  },
   data() {
     return {
-      detailsAreVisible: false,
-      friendIsFavorite: this.isFavorite,
-      friend: {
-        id: 'manuel',
-        name: 'Manuel Lorenz',
-        phone: '1379 13971 90',
-        email: 'manuel@localhost.com'
-      }
+      detailsAreVisible: false
     };
   },
   methods: {
@@ -45,12 +50,7 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavorite() {
-      this.friendIsFavorite = !this.friendIsFavorite;
-      // if (this.friendIsFavorite === '1') {
-      //   this.friendIsFavorite = '0';
-      // } else {
-      //   this.friendIsFavorite = '1';
-      // }
+      this.$emit('toggle-favorite', this.id);
     }
   }
 };
